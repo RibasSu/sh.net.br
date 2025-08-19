@@ -1,0 +1,28 @@
+[package]
+name = "sh_net_br"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"] }
+axum = { version = "0.7", features = ["multipart"] }
+axum-server = { version = "0.6", features = ["tls-rustls"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["fs", "cors"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+hex = "0.4"
+uuid = { version = "1.0", features = ["v4"] }
+bcrypt = "0.15"
+jsonwebtoken = "9.0"
+rustls = "0.21"
+rustls-pemfile = "1.0"
+rcgen = "0.12"
+time = "0.3"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+tempfile = "3.0"
+walkdir = "2.0"
+regex = "1.0"

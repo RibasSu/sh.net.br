@@ -1,0 +1,38 @@
+# Rust
+/target
+Cargo.lock
+
+# Certificados e chaves
+certs/
+gpg_keys/
+
+# Dados do usuário
+users.json
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Scripts sensíveis (opcional - manter apenas exemplos)
+scripts/*.sh
+!scripts/test.sh
+
+# Docker
+docker-compose.override.yml

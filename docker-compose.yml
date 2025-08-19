@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  sh-net-br:
+    build: .
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./scripts:/opt/sh_net_br/scripts
+      - ./gpg_keys:/opt/sh_net_br/gpg_keys
+      - ./certs:/opt/sh_net_br/certs
+    environment:
+      - RUST_LOG=info
+    restart: unless-stopped
+
+    # Configurações de segurança
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+
+    # Configurações de recursos
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+
+  # Nginx proxy reverso (opcional)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - sh-net-br
+    restart: unless-stopped
+    profiles:
+      - proxy
+
+volumes:
+  scripts:
+  gpg_keys:
+  certs:

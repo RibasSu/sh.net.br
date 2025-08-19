@@ -366,10 +366,11 @@ pub const ADMIN_HTML: &str = r#"
     <div class="content">
         <div class="section">
             <h2>📤 Upload de Scripts</h2>
-            <form id="uploadForm" enctype="multipart/form-data">
+            <form id="uploadForm" action="/admin/upload" method="post" enctype="multipart/form-data">
                 <div class="upload-area">
-                    <p>Arraste arquivos .sh aqui ou clique para selecionar</p>
-                    <input type="file" id="fileInput" name="script" accept=".sh" multiple class="file-input">
+                    <p>Selecione arquivos .sh para upload</p>
+                    <input type="file" id="fileInput" name="script" accept=".sh" required class="file-input">
+                    <br><br>
                     <button type="submit" class="upload-btn">Fazer Upload</button>
                 </div>
             </form>
@@ -429,12 +430,6 @@ pub const ADMIN_HTML: &str = r#"
             document.execCommand('copy');
             alert('Chave pública copiada para a área de transferência!');
         }
-
-        // Upload de arquivo (placeholder - implementar conforme necessário)
-        document.getElementById('uploadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Funcionalidade de upload em desenvolvimento');
-        });
 
         // Carregar scripts ao carregar a página
         document.addEventListener('DOMContentLoaded', loadScripts);

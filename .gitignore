@@ -32,7 +32,10 @@ Thumbs.db
 
 # Scripts sensíveis (opcional - manter apenas exemplos)
 scripts/*.sh
+scripts/*.sh.sig
 !scripts/test.sh
+!gpg_keys/setup.sh
+
 
 # Docker
 docker-compose.override.yml
